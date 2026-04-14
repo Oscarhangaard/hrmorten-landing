@@ -60,9 +60,11 @@ export async function GET(req: NextRequest) {
 
     await notifyTelegram(message);
 
-    return NextResponse.redirect(new URL(`/success?name=${encodeURIComponent(firstName)}`, req.url));
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://hrmorten.dk";
+    return NextResponse.redirect(`${baseUrl}/success?name=${encodeURIComponent(firstName)}`);
   } catch (err: unknown) {
     const message = err instanceof Error ? err.message : "Ukendt fejl";
-    return NextResponse.redirect(new URL(`/?error=${encodeURIComponent(message)}`, req.url));
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://hrmorten.dk";
+    return NextResponse.redirect(`${baseUrl}/?error=${encodeURIComponent(message)}`);
   }
 }
