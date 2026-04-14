@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@import "@telegram-apps/telegram-ui/dist/styles.css";
 
 :root {
   --background: #0a0a0f;
